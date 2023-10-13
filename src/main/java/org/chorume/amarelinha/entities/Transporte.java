@@ -3,6 +3,7 @@ package org.chorume.amarelinha.entities;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Transporte {
     public HashMap<Produto, Integer> cargaTotal; // <Produto, Quantidade>, salva carga completa
@@ -74,6 +75,14 @@ public class Transporte {
             }
         }
         return objetosCarregados;
+    }
+
+    public double somaPesoCarga(HashMap<Produto, Integer> carga) {
+        double total = 0;
+        for (Map.Entry<Produto,Integer> produto : carga.entrySet()) {
+            total += produto.getKey().getPeso() * produto.getValue();
+        }
+        return total;
     }
 
     public double calcularCustoTotal() {
