@@ -24,4 +24,12 @@ public class Produto {
     public void setPeso(double peso) {
         this.peso = peso;
     }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "nome='" + nome + '\'' +
+                ", peso=" + peso +
+                '}';
+    }
 }
