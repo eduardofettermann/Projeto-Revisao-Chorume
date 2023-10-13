@@ -16,4 +16,12 @@ public class Produto {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
 }
