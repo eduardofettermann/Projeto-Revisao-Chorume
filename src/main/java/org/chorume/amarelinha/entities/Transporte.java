@@ -10,5 +10,21 @@ public class Transporte {
         this.caminhoes = caminhoes;
     }
 
+    // Getters e Setters
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public List<Caminhao> getCaminhoes() {
+        return caminhoes;
+    }
+
+    public void setCaminhoes(List<Caminhao> caminhoes) {
+        this.caminhoes = caminhoes;
+    }
 }
 
