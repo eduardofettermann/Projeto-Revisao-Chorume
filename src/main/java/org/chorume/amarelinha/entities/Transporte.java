@@ -1,22 +1,27 @@
 package org.chorume.amarelinha.entities;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 public class Transporte {
-    private List<Produto> produtos;
+    public HashMap<Produto, Integer> cargaTotal; // <Produto, Quantidade>, salva carga completa
+    private HashMap<Produto, Integer> carga; // <Produto, Quantidade>, será manipulado para carregar os caminhões
     private List<Caminhao> caminhoes;
 
     //Construtor
-    public Transporte(List<Produto> produtos, List<Caminhao> caminhoes) {
-        this.produtos = produtos;
-        this.caminhoes = caminhoes;
+    public Transporte(HashMap<Produto, Integer> carga) {
+        this.cargaTotal = carga;
+        this.carga = carga;
     }
 
     // Getters e Setters
-    public List<Produto> getProdutos() {
-        return produtos;
+    public HashMap<Produto, Integer> getCarga() {
+        return carga;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setCarga(HashMap<Produto, Integer> carga) {
+        this.carga = carga;
     }
 
     public List<Caminhao> getCaminhoes() {
@@ -28,9 +33,9 @@ public class Transporte {
     }
 
     //Aqui vai a lógica do transporte (incompleto ainda)
-    public void adicionarProduto(Produto produto) {
-        produtos.add(produto);
-    }
+//    public void adicionarProduto(Produto produto) {
+//        carga.add(produto);
+//    }
 
     public void adicionarCaminhao(Caminhao caminhao) {
         caminhoes.add(caminhao);
@@ -40,8 +45,35 @@ public class Transporte {
         // Lógica para calcular a distância total
     }
 
-    public Caminhao determinarCaminhaoAdequado() {
+    // Faz a divisão ideal da carga entre caminhões
+    public void divideCarga() {
         // Lógica para determinar o caminhão adequado
+    }
+
+    public HashMap<Produto, Integer> carregaMaisPesado(double pesoMax) {
+        double pesoCarregado = 0.0;
+        HashMap<Produto, Integer> objetosCarregados = new HashMap<>();
+        List<Produto> produtos = new ArrayList<>(this.carga.keySet());
+
+        while (!this.carga.isEmpty() || !produtos.isEmpty() || pesoCarregado != pesoMax) {
+            Produto produtoMaisPesado = produtos.get(produtos.size() - 1);
+            if (pesoCarregado + produtoMaisPesado.getPeso() < pesoMax) {
+                pesoCarregado += produtoMaisPesado.getPeso();
+                if (objetosCarregados.containsKey(produtoMaisPesado)) {
+                    objetosCarregados.put(produtoMaisPesado, objetosCarregados.get(produtoMaisPesado) + 1);
+                } else {
+                    objetosCarregados.put(produtoMaisPesado, 1);
+                }
+                this.carga.put(produtoMaisPesado, this.carga.get(produtoMaisPesado) - 1);
+                if (this.carga.get(produtoMaisPesado) == 0) {
+                    this.carga.remove(produtoMaisPesado);
+                    produtos.remove(produtoMaisPesado);
+                }
+            } else {
+                produtos.remove(produtos.size() - 1);
+            }
+        }
+        return objetosCarregados;
     }
 
     public double calcularCustoTotal() {
