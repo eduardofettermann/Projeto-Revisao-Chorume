@@ -37,5 +37,14 @@ public class Caminhao {
         this.capacidadeMaxima = capacidadeMaxima;
     }
 
+    // Método toString para representação em string
+    @Override
+    public String toString() {
+        return "Caminhao{" +
+                "classificacao='" + classificacao + '\'' +
+                ", precoPorKm=" + precoPorKm +
+                ", capacidadeMaxima=" + capacidadeMaxima +
+                '}';
+    }
 
 }
