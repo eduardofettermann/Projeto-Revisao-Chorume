@@ -42,9 +42,9 @@ public class Transporte {
         caminhoes.add(caminhao);
     }
 
-    public double calcularDistanciaTotal() {
-        // Lógica para calcular a distância total
-    }
+//    public double calcularDistanciaTotal() {
+//        // Lógica para calcular a distância total
+//    }
 
     // Faz a divisão ideal da carga entre caminhões
     public void divideCarga() {
@@ -103,15 +103,15 @@ public class Transporte {
         return total;
     }
 
-    public double calcularCustoTotal() {
-        // Lógica para calcular o custo total
-    }
+//    public double calcularCustoTotal() {
+//        // Lógica para calcular o custo total
+//    }
 
     //método toString da classe
     @Override
     public String toString() {
         return "Transporte{" +
-                "produtos=" + produtos +
+                "produtos=" + cargaTotal +
                 ", caminhoes=" + caminhoes +
                 '}';
     }
