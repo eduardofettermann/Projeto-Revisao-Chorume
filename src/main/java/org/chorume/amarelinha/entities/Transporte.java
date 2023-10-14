@@ -1,27 +1,24 @@
 package org.chorume.amarelinha.entities;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Transporte {
-    public HashMap<Produto, Integer> cargaTotal; // <Produto, Quantidade>, salva carga completa
-    private HashMap<Produto, Integer> carga; // <Produto, Quantidade>, será manipulado para carregar os caminhões
+    public LinkedHashMap<Produto, Integer> cargaTotal; // <Produto, Quantidade>, salva carga completa
+    private LinkedHashMap<Produto, Integer> carga; // <Produto, Quantidade>, será manipulado para carregar os caminhões
     private List<Caminhao> caminhoes;
 
     //Construtor
-    public Transporte(HashMap<Produto, Integer> carga) {
+    public Transporte(LinkedHashMap<Produto, Integer> carga) {
         this.cargaTotal = carga;
         this.carga = carga;
     }
 
     // Getters e Setters
-    public HashMap<Produto, Integer> getCarga() {
+    public LinkedHashMap<Produto, Integer> getCarga() {
         return carga;
     }
 
-    public void setCarga(HashMap<Produto, Integer> carga) {
+    public void setCarga(LinkedHashMap<Produto, Integer> carga) {
         this.carga = carga;
     }
 
@@ -34,9 +31,8 @@ public class Transporte {
     }
 
     //Aqui vai a lógica do transporte (incompleto ainda)
-//    public void adicionarProduto(Produto produto) {
-//        carga.add(produto);
-//    }
+    public void adicionarProduto() {
+    }
 
     public void adicionarCaminhao(Caminhao caminhao) {
         caminhoes.add(caminhao);
@@ -69,9 +65,9 @@ public class Transporte {
         }
     }
 
-    public HashMap<Produto, Integer> carregaMaisPesado(double pesoMax) {
+    public LinkedHashMap<Produto, Integer> carregaMaisPesado(double pesoMax) {
         double pesoCarregado = 0.0;
-        HashMap<Produto, Integer> objetosCarregados = new HashMap<>();
+        LinkedHashMap<Produto, Integer> objetosCarregados = new LinkedHashMap<>();
         List<Produto> produtos = new ArrayList<>(this.carga.keySet());
 
         while (!this.carga.isEmpty() || !produtos.isEmpty() || pesoCarregado != pesoMax) {
@@ -95,12 +91,23 @@ public class Transporte {
         return objetosCarregados;
     }
 
-    public double somaPesoCarga(HashMap<Produto, Integer> carga) {
+    public double somaPesoCarga(LinkedHashMap<Produto, Integer> carga) {
         double total = 0;
         for (Map.Entry<Produto,Integer> produto : carga.entrySet()) {
             total += produto.getKey().getPeso() * produto.getValue();
         }
         return total;
+    }
+
+    public static LinkedHashMap<Produto, Integer> ordenaCarga(LinkedHashMap<Produto, Integer> carga) {
+        LinkedHashMap<Produto, Integer> cargaOrdenada = new LinkedHashMap<>();
+
+        List<Produto> produtos = new ArrayList<>(carga.keySet());
+        produtos.sort(Comparator.comparingDouble(Produto::getPeso));
+        for (Produto produto : produtos) {
+            cargaOrdenada.put(produto, carga.get(produto));
+        }
+        return cargaOrdenada;
     }
 
 //    public double calcularCustoTotal() {
