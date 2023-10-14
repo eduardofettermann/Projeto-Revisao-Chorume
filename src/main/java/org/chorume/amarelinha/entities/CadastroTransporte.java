@@ -1,5 +1,7 @@
 package org.chorume.amarelinha.entities;
 
+import java.util.Scanner;
+
 public class CadastroTransporte {
 
     // menu para interação com o usuário
@@ -34,7 +36,7 @@ public class CadastroTransporte {
                 } case 4 -> {
                     System.out.println("Verifica produtos");
                     carregaMaisPesado();
-                } case 5 {
+                } case 5 -> {
                     System.out.println("Somar peso das cargas");
                     somaPesoCarga();
                 } case 6 -> {
