@@ -1,4 +1,4 @@
-package org.chorume.amarelinha;
+package org.chorume.amarelinha.entities;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

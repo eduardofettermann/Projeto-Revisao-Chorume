@@ -1,4 +1,6 @@
-import org.chorume.amarelinha.GerenciadorDeCidades;
+package controledecidades;
+
+import org.chorume.amarelinha.controledecidades.GerenciadorDeCidades;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

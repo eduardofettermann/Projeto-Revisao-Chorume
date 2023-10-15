@@ -1,4 +1,6 @@
-import org.chorume.amarelinha.Cidade;
+package entities;
+
+import org.chorume.amarelinha.entities.Cidade;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

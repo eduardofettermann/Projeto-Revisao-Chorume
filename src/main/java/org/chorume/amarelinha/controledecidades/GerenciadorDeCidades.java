@@ -1,6 +1,7 @@
-package org.chorume.amarelinha;
+package org.chorume.amarelinha.controledecidades;
 
-import java.io.FileNotFoundException;
+import org.chorume.amarelinha.entities.Cidade;
+
 import java.util.LinkedHashMap;
 
 public class GerenciadorDeCidades {

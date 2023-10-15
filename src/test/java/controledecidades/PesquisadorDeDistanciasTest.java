@@ -1,5 +1,7 @@
-import org.chorume.amarelinha.Cidade;
-import org.chorume.amarelinha.PesquisadorDeDistancias;
+package controledecidades;
+
+import org.chorume.amarelinha.entities.Cidade;
+import org.chorume.amarelinha.controledecidades.PesquisadorDeDistancias;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
