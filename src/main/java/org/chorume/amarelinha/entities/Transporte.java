@@ -9,8 +9,9 @@ public class Transporte {
 
     //Construtor
     public Transporte(LinkedHashMap<Produto, Integer> carga) {
-        this.cargaTotal = carga;
-        this.carga = carga;
+        carga = ordenaCarga(carga);
+        this.cargaTotal = new LinkedHashMap<>(carga);
+        this.carga = new LinkedHashMap<>(carga);
     }
 
     // Getters e Setters
