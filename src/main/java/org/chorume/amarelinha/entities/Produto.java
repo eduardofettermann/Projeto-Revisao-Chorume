@@ -1,5 +1,7 @@
 package org.chorume.amarelinha.entities;
 
+import java.util.Objects;
+
 public class Produto {
     private String nome;
     private double peso; // Peso em kg
@@ -34,5 +36,19 @@ public class Produto {
                 "nome='" + nome + '\'' +
                 ", peso=" + peso +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return Double.compare(produto.peso, peso) == 0 &&
+                Objects.equals(nome, produto.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, peso);
     }
 }
