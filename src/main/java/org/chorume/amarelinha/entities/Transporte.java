@@ -45,26 +45,24 @@ public class Transporte {
 
     // Faz a divisão ideal da carga entre caminhões
     public void divideCarga() {
+        // Enche caminhões grandes
         while (somaPesoCarga(carga) > 8000) {
-            carregaMaisPesado(10000);
-            // Enche caminhões grandes
-            while (somaPesoCarga(carga) > 8000) {
-                caminhoes.add(new Caminhao("Grande",
-                        29.21, 10000,
-                        carregaMaisPesado(10000)));
-            }
-            while (somaPesoCarga(carga) > 2000) {
-                caminhoes.add(new Caminhao("Médio",
-                        13.42, 4000,
-                        carregaMaisPesado(4000)));
-            }
-            while (somaPesoCarga(carga) > 0) {
-                caminhoes.add(new Caminhao("Pequeno",
-                        5.83, 1000,
-                        carregaMaisPesado(1000)));
-            }
+            caminhoes.add(new Caminhao("Grande",
+                    29.21, 10000,
+                    carregaMaisPesado(10000)));
+        }
+        while (somaPesoCarga(carga) > 2000) {
+            caminhoes.add(new Caminhao("Médio",
+                    13.42, 4000,
+                    carregaMaisPesado(4000)));
+        }
+        while (somaPesoCarga(carga) > 0) {
+            caminhoes.add(new Caminhao("Pequeno",
+                    5.83, 1000,
+                    carregaMaisPesado(1000)));
         }
     }
+
 
     public LinkedHashMap<Produto, Integer> carregaMaisPesado(double pesoMax) {
         double pesoCarregado = 0.0;
@@ -94,7 +92,7 @@ public class Transporte {
 
     public double somaPesoCarga(LinkedHashMap<Produto, Integer> carga) {
         double total = 0;
-        for (Map.Entry<Produto,Integer> produto : carga.entrySet()) {
+        for (Map.Entry<Produto, Integer> produto : carga.entrySet()) {
             total += produto.getKey().getPeso() * produto.getValue();
         }
         return total;
