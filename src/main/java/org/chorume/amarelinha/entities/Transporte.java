@@ -69,7 +69,7 @@ public class Transporte {
         LinkedHashMap<Produto, Integer> objetosCarregados = new LinkedHashMap<>();
         List<Produto> produtos = new ArrayList<>(this.carga.keySet());
 
-        while (!this.carga.isEmpty() || !produtos.isEmpty() || pesoCarregado != pesoMax) {
+        while (!this.carga.isEmpty() && !produtos.isEmpty() && pesoCarregado != pesoMax) {
             Produto produtoMaisPesado = produtos.get(produtos.size() - 1);
             if (pesoCarregado + produtoMaisPesado.getPeso() < pesoMax) {
                 pesoCarregado += produtoMaisPesado.getPeso();
