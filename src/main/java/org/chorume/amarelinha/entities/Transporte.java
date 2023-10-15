@@ -5,7 +5,7 @@ import java.util.*;
 public class Transporte {
     public LinkedHashMap<Produto, Integer> cargaTotal; // <Produto, Quantidade>, salva carga completa
     private LinkedHashMap<Produto, Integer> carga; // <Produto, Quantidade>, será manipulado para carregar os caminhões
-    private List<Caminhao> caminhoes;
+    private List<Caminhao> caminhoes = new ArrayList<>();
 
     //Construtor
     public Transporte(LinkedHashMap<Produto, Integer> carga) {
