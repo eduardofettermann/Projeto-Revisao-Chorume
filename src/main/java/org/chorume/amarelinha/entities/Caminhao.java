@@ -18,28 +18,9 @@ public class Caminhao {
     }
 
     // Getters e Setters
-    public String getClassificacao() {
-        return classificacao;
-    }
 
-    public void setClassificacao(String classificacao) {
-        this.classificacao = classificacao;
-    }
-
-    public double getPrecoPorKm() {
-        return precoPorKm;
-    }
-
-    public void setPrecoPorKm(double precoPorKm) {
-        this.precoPorKm = precoPorKm;
-    }
-
-    public double getCapacidadeMaxima() {
-        return capacidadeMaxima;
-    }
-
-    public void setCapacidadeMaxima(double capacidadeMaxima) {
-        this.capacidadeMaxima = capacidadeMaxima;
+    public LinkedHashMap<Produto, Integer> getCarga() {
+        return carga;
     }
 
     // Método toString para representação em string
