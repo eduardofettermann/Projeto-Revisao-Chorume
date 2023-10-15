@@ -49,6 +49,7 @@ public class Caminhao {
                 "classificacao='" + classificacao + '\'' +
                 ", precoPorKm=" + precoPorKm +
                 ", capacidadeMaxima=" + capacidadeMaxima +
+                ", carga=" + carga +
                 '}';
     }
 
