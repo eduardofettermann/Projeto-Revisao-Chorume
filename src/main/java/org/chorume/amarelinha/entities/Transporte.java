@@ -33,7 +33,7 @@ public class Transporte {
 //    }
 
     // Faz a divisão ideal da carga entre caminhões
-    private void divideCarga() {
+    public void divideCarga() {
         // Enche caminhões grandes
         while (somaPesoCarga(carga) > 8000) {
             caminhoes.add(new Caminhao("Grande",
@@ -53,7 +53,7 @@ public class Transporte {
     }
 
 
-    private LinkedHashMap<Produto, Integer> carregaMaisPesado(double pesoMax) {
+    public LinkedHashMap<Produto, Integer> carregaMaisPesado(double pesoMax) {
         double pesoCarregado = 0.0;
         LinkedHashMap<Produto, Integer> objetosCarregados = new LinkedHashMap<>();
         List<Produto> produtos = new ArrayList<>(this.carga.keySet());
@@ -79,7 +79,7 @@ public class Transporte {
         return objetosCarregados;
     }
 
-    private double somaPesoCarga(LinkedHashMap<Produto, Integer> carga) {
+    public double somaPesoCarga(LinkedHashMap<Produto, Integer> carga) {
         double total = 0;
         for (Map.Entry<Produto, Integer> produto : carga.entrySet()) {
             total += produto.getKey().getPeso() * produto.getValue();
@@ -109,6 +109,20 @@ public class Transporte {
                 "produtos=" + cargaTotal +
                 ", caminhoes=" + caminhoes +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transporte transporte = (Transporte) o;
+        return Objects.equals(cargaTotal, transporte.cargaTotal) &&
+                Objects.equals(caminhoes, transporte.caminhoes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cargaTotal, caminhoes);
     }
 
 }
