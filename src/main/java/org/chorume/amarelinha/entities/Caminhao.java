@@ -34,4 +34,21 @@ public class Caminhao {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Caminhao caminhao = (Caminhao) o;
+        return Double.compare(caminhao.precoPorKm, precoPorKm) == 0 &&
+                Double.compare(caminhao.capacidadeMaxima, capacidadeMaxima) == 0 &&
+                Objects.equals(classificacao, caminhao.classificacao) &&
+                Objects.equals(carga, caminhao.carga);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(classificacao, precoPorKm, capacidadeMaxima, carga);
+    }
+
+
 }
