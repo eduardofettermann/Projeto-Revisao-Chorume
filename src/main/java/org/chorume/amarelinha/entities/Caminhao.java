@@ -2,6 +2,7 @@ package org.chorume.amarelinha.entities;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 public class Caminhao {
     private String classificacao;  // Pequeno, Médio, Grande
