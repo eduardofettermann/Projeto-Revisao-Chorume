@@ -14,7 +14,7 @@ public class Caminhao {
         this.classificacao = classificacao;
         this.precoPorKm = precoPorKm;
         this.capacidadeMaxima = capacidadeMaxima;
-        this.carga = carga;
+        this.carga = new LinkedHashMap<>(carga);
     }
 
     // Getters e Setters
