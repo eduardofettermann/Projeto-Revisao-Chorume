@@ -26,23 +26,23 @@ public class CadastroTransporte {
             switch(opcao) {
                 case 1 -> {
                     System.out.println("Função para adicionar caminhão");
-                    adicionarCaminhao();
+//                    adicionarCaminhao();
                 } case 2 -> {
                     System.out.println("Calcular distância total");
-                    calcularDistanciaTotal();
+//                    calcularDistanciaTotal();
                 } case 3 -> {
                     System.out.println("Divisão de cargas entre caminhões");
-                    divideCarga();
+//                    divideCarga();
                 } case 4 -> {
                     System.out.println("Verifica produtos");
-                    carregaMaisPesado();
+//                    carregaMaisPesado();
                 } case 5 -> {
                     System.out.println("Somar peso das cargas");
-                    somaPesoCarga();
+//                    somaPesoCarga();
                 } case 6 -> {
                     System.out.println("Calcular custo total");
-                    calcularCustoTotal();
-                } case 6 -> {
+//                    calcularCustoTotal();
+                } case 7 -> {
                     System.out.println("Fechando programa...");
                     i = false;
                 } default ->
