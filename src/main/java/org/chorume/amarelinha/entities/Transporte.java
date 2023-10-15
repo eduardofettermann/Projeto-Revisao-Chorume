@@ -1,27 +1,25 @@
 package org.chorume.amarelinha.entities;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Transporte {
-    public HashMap<Produto, Integer> cargaTotal; // <Produto, Quantidade>, salva carga completa
-    private HashMap<Produto, Integer> carga; // <Produto, Quantidade>, será manipulado para carregar os caminhões
-    private List<Caminhao> caminhoes;
+    public LinkedHashMap<Produto, Integer> cargaTotal; // <Produto, Quantidade>, salva carga completa
+    private LinkedHashMap<Produto, Integer> carga; // <Produto, Quantidade>, será manipulado para carregar os caminhões
+    private List<Caminhao> caminhoes = new ArrayList<>();
 
     //Construtor
-    public Transporte(HashMap<Produto, Integer> carga) {
-        this.cargaTotal = carga;
-        this.carga = carga;
+    public Transporte(LinkedHashMap<Produto, Integer> carga) {
+        carga = ordenaCarga(carga);
+        this.cargaTotal = new LinkedHashMap<>(carga);
+        this.carga = new LinkedHashMap<>(carga);
     }
 
     // Getters e Setters
-    public HashMap<Produto, Integer> getCarga() {
+    public LinkedHashMap<Produto, Integer> getCarga() {
         return carga;
     }
 
-    public void setCarga(HashMap<Produto, Integer> carga) {
+    public void setCarga(LinkedHashMap<Produto, Integer> carga) {
         this.carga = carga;
     }
 
@@ -34,47 +32,44 @@ public class Transporte {
     }
 
     //Aqui vai a lógica do transporte (incompleto ainda)
-//    public void adicionarProduto(Produto produto) {
-//        carga.add(produto);
-//    }
+    public void adicionarProduto() {
+    }
 
     public void adicionarCaminhao(Caminhao caminhao) {
         caminhoes.add(caminhao);
     }
 
-    public double calcularDistanciaTotal() {
-        // Lógica para calcular a distância total
-    }
+//    public double calcularDistanciaTotal() {
+//        // Lógica para calcular a distância total
+//    }
 
     // Faz a divisão ideal da carga entre caminhões
     public void divideCarga() {
+        // Enche caminhões grandes
         while (somaPesoCarga(carga) > 8000) {
-            carregaMaisPesado(10000);
-            // Enche caminhões grandes
-            while (somaPesoCarga(carga) > 8000) {
-                caminhoes.add(new Caminhao("Grande",
-                        29.21, 10000,
-                        carregaMaisPesado(10000)));
-            }
-            while (somaPesoCarga(carga) > 2000) {
-                caminhoes.add(new Caminhao("Médio",
-                        13.42, 4000,
-                        carregaMaisPesado(4000)));
-            }
-            while (somaPesoCarga(carga) > 0) {
-                caminhoes.add(new Caminhao("Pequeno",
-                        5.83, 1000,
-                        carregaMaisPesado(1000)));
-            }
+            caminhoes.add(new Caminhao("Grande",
+                    29.21, 10000,
+                    carregaMaisPesado(10000)));
+        }
+        while (somaPesoCarga(carga) > 2000) {
+            caminhoes.add(new Caminhao("Médio",
+                    13.42, 4000,
+                    carregaMaisPesado(4000)));
+        }
+        while (somaPesoCarga(carga) > 0) {
+            caminhoes.add(new Caminhao("Pequeno",
+                    5.83, 1000,
+                    carregaMaisPesado(1000)));
         }
     }
 
-    public HashMap<Produto, Integer> carregaMaisPesado(double pesoMax) {
+
+    public LinkedHashMap<Produto, Integer> carregaMaisPesado(double pesoMax) {
         double pesoCarregado = 0.0;
-        HashMap<Produto, Integer> objetosCarregados = new HashMap<>();
+        LinkedHashMap<Produto, Integer> objetosCarregados = new LinkedHashMap<>();
         List<Produto> produtos = new ArrayList<>(this.carga.keySet());
 
-        while (!this.carga.isEmpty() || !produtos.isEmpty() || pesoCarregado != pesoMax) {
+        while (!this.carga.isEmpty() && !produtos.isEmpty() && pesoCarregado != pesoMax) {
             Produto produtoMaisPesado = produtos.get(produtos.size() - 1);
             if (pesoCarregado + produtoMaisPesado.getPeso() < pesoMax) {
                 pesoCarregado += produtoMaisPesado.getPeso();
@@ -95,23 +90,34 @@ public class Transporte {
         return objetosCarregados;
     }
 
-    public double somaPesoCarga(HashMap<Produto, Integer> carga) {
+    public double somaPesoCarga(LinkedHashMap<Produto, Integer> carga) {
         double total = 0;
-        for (Map.Entry<Produto,Integer> produto : carga.entrySet()) {
+        for (Map.Entry<Produto, Integer> produto : carga.entrySet()) {
             total += produto.getKey().getPeso() * produto.getValue();
         }
         return total;
     }
 
-    public double calcularCustoTotal() {
-        // Lógica para calcular o custo total
+    public static LinkedHashMap<Produto, Integer> ordenaCarga(LinkedHashMap<Produto, Integer> carga) {
+        LinkedHashMap<Produto, Integer> cargaOrdenada = new LinkedHashMap<>();
+
+        List<Produto> produtos = new ArrayList<>(carga.keySet());
+        produtos.sort(Comparator.comparingDouble(Produto::getPeso));
+        for (Produto produto : produtos) {
+            cargaOrdenada.put(produto, carga.get(produto));
+        }
+        return cargaOrdenada;
     }
+
+//    public double calcularCustoTotal() {
+//        // Lógica para calcular o custo total
+//    }
 
     //método toString da classe
     @Override
     public String toString() {
         return "Transporte{" +
-                "produtos=" + produtos +
+                "produtos=" + cargaTotal +
                 ", caminhoes=" + caminhoes +
                 '}';
     }
