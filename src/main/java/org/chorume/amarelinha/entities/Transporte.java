@@ -17,7 +17,7 @@ public class Transporte {
 
     // Getters e Setters
     public LinkedHashMap<Produto, Integer> getCarga() {
-        return carga;
+        return cargaTotal;
     }
 
     public List<Caminhao> getCaminhoes() {
