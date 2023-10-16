@@ -24,10 +24,6 @@ public class Transporte {
         return caminhoes;
     }
 
-    //Aqui vai a lógica do transporte (incompleto ainda)
-    public void adicionarProduto() {
-    }
-
 //    public double calcularDistanciaTotal() {
 //        // Lógica para calcular a distância total
 //    }
