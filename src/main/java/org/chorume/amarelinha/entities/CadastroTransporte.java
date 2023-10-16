@@ -5,10 +5,10 @@ import java.util.*;
 public class CadastroTransporte {
     public List<String> cidades = new ArrayList<>(); // Modificar para List<Cidade>
     private LinkedHashMap<Produto, Integer> carga;
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner SCANNER = new Scanner(System.in);
     private int nCidades = cidades.size();
 
-    private List<Produto> produtosPermitidos = Arrays.asList(
+    private final List<Produto> PRODUTOS_PERMITIDOS = Arrays.asList(
             new Produto("Celular", 0.7),
             new Produto("Geladeira", 50.0),
             new Produto("Air Fryer", 3.5),
@@ -25,8 +25,8 @@ public class CadastroTransporte {
         boolean listando = true;
         do {
             try {
-                System.out.printf("Digite a cidade %d (X para sair): ", nCidades);
-                cidadeInput = scanner.nextLine();
+                System.out.printf("Digite a cidade %d (X para sair): ", nCidades + 1);
+                cidadeInput = SCANNER.nextLine();
                 if (!cidadeInput.equalsIgnoreCase("X")) {
                     // cidade = verificaCidade(cidadeInput); Substituir por método que verifica cidade
                     cidades.add(cidadeInput); // Substituir cidadeInput por cidade
@@ -35,6 +35,8 @@ public class CadastroTransporte {
                 }
             } catch (Exception e) { // Trocar por Exception de cidade inexistente
                 System.out.println("Cidade inválida!");
+            } finally {
+                nCidades = cidades.size();
             }
         } while (listando);
     }
