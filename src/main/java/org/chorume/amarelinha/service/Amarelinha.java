@@ -1,6 +1,6 @@
-package org.chorume.amarelinha;
+package org.chorume.amarelinha.service;
 
-import org.chorume.amarelinha.entities.CadastroTransporte;
+import org.chorume.amarelinha.controller.CadastroTransporte;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -74,7 +74,7 @@ public class Amarelinha {
                         imprimeMenuCadastro();
                     }
                     case 2 -> {
-                        System.out.println("Vendo cidadades...");
+                        System.out.println("Vendo cidades...");
                         System.out.println(cadastroTransporte.cidades);
                     }
                     case 3 -> {

@@ -1,4 +1,4 @@
-import org.chorume.amarelinha.entities.Produto;
+import org.chorume.amarelinha.model.Produto;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

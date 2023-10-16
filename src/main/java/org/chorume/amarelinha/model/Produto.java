@@ -1,4 +1,4 @@
-package org.chorume.amarelinha.entities;
+package org.chorume.amarelinha.model;
 
 import java.util.Objects;
 

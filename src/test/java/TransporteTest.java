@@ -1,10 +1,9 @@
-import org.chorume.amarelinha.entities.Produto;
-import org.chorume.amarelinha.entities.Transporte;
+import org.chorume.amarelinha.model.Produto;
+import org.chorume.amarelinha.controller.Transporte;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class TransporteTest {
     @Test

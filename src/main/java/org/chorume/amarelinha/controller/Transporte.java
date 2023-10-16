@@ -1,4 +1,7 @@
-package org.chorume.amarelinha.entities;
+package org.chorume.amarelinha.controller;
+
+import org.chorume.amarelinha.model.Caminhao;
+import org.chorume.amarelinha.model.Produto;
 
 import java.util.*;
 

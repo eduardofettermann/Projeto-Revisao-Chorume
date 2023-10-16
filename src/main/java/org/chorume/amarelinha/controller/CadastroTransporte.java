@@ -1,11 +1,13 @@
-package org.chorume.amarelinha.entities;
+package org.chorume.amarelinha.controller;
+
+import org.chorume.amarelinha.model.Produto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import static org.chorume.amarelinha.Amarelinha.SCANNER;
+import static org.chorume.amarelinha.service.Amarelinha.SCANNER;
 
 public class CadastroTransporte {
     public List<String> cidades = new ArrayList<>(); // Modificar para List<Cidade>
