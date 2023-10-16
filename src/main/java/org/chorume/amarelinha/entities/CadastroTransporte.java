@@ -1,15 +1,23 @@
 package org.chorume.amarelinha.entities;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CadastroTransporte {
     public List<String> cidades = new ArrayList<>(); // Modificar para List<Cidade>
     private LinkedHashMap<Produto, Integer> carga;
     private Scanner scanner = new Scanner(System.in);
     private int nCidades = cidades.size();
+
+    private List<Produto> produtosPermitidos = Arrays.asList(
+            new Produto("Celular", 0.7),
+            new Produto("Geladeira", 50.0),
+            new Produto("Air Fryer", 3.5),
+            new Produto("Cadeira", 5.0),
+            new Produto("Luminária", 0.8),
+            new Produto("Lavadora de roupa", 15.0),
+            new Produto("PlayStation 5", 3.9),
+            new Produto("Nintendo Switch", 0.3)
+    );
 
     public void cadastraCidades() {
         String cidadeInput;
