@@ -16,6 +16,7 @@ public class Amarelinha {
                 switch (opcao) {
                     case 1 -> {
                         System.out.println("Consultando trechos...");
+                        imprimeMenuPrincipal();
                     }
                     case 2 -> {
                         menuCadastro();
@@ -23,6 +24,7 @@ public class Amarelinha {
                     }
                     case 3 -> {
                         System.out.println("Estatisticas...");
+                        imprimeMenuPrincipal();
                     }
                     case 5 -> {
                         imprimeMenuPrincipal();
