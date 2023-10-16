@@ -1,7 +1,7 @@
-package controledecidades;
+package entities;
 
 import org.chorume.amarelinha.entities.Cidade;
-import org.chorume.amarelinha.controledecidades.RegistradorDeCidades;
+import org.chorume.amarelinha.entities.RegistradorDeCidades;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ public class RegistradorDeCidadesTest {
     @Test
     void verificaSeRetornaLinkedHashMapComAsCidadesDoArquivoPassado(){
         RegistradorDeCidades registradorDeCidades = new RegistradorDeCidades();
-        String caminhoComArquivoCSV = "src/main/java/org/chorume/amarelinha/DistanciasCidadesCSV.csv";
+        String caminhoComArquivoCSV = "DistanciasCidadesCSV.csv";
 
         LinkedHashMap<String, Cidade> cidades = registradorDeCidades.retornaMapDasCidadesDoArquivo(caminhoComArquivoCSV);
 

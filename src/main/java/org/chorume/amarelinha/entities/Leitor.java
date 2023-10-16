@@ -1,4 +1,4 @@
-package org.chorume.amarelinha.controledecidades;
+package org.chorume.amarelinha.entities;
 
 import java.io.*;
 

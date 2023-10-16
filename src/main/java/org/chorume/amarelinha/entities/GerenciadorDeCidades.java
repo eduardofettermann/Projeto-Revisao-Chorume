@@ -1,6 +1,4 @@
-package org.chorume.amarelinha.controledecidades;
-
-import org.chorume.amarelinha.entities.Cidade;
+package org.chorume.amarelinha.entities;
 
 import java.util.LinkedHashMap;
 
