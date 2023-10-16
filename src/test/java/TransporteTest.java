@@ -56,6 +56,7 @@ public class TransporteTest {
         assertLinkedHashMapEquals(cargaOrdenadaMetodo3, cargaOrdenada3);
     }
 
+    // Método verifica ordem dos itens de um LinkedHashMap
     private void assertLinkedHashMapEquals(
         LinkedHashMap<Produto, Integer> esperado, LinkedHashMap<Produto, Integer> actual) {
 
@@ -101,4 +102,8 @@ public class TransporteTest {
         Assertions.assertEquals(22897.3, transporte1.somaPesoCarga(transporte1.getCarga()));
         Assertions.assertEquals(3601.0, transporte2.somaPesoCarga(transporte2.getCarga()));
     }
+
+//    @Test void testaCriaçãoTransporte() {
+//
+//    }
 }
