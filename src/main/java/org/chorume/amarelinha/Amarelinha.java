@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Amarelinha {
-    public static Scanner scanner = new Scanner(System.in);
+    public static final Scanner SCANNER = new Scanner(System.in);
     public static CadastroTransporte cadastroTransporte = new CadastroTransporte();
 
     public static void menuPrincipal() {
@@ -15,7 +15,7 @@ public class Amarelinha {
         do {
             try {
                 System.out.print("Digite a opção desejada: ");
-                opcao = scanner.nextInt();
+                opcao = SCANNER.nextInt();
                 switch (opcao) {
                     case 1 -> {
                         System.out.println("Consultando trechos...");
@@ -40,7 +40,7 @@ public class Amarelinha {
                     }
                 }
             } catch (InputMismatchException ime) {
-                scanner.nextLine();
+                SCANNER.nextLine();
                 opcao = -1;
                 System.out.println("Opção inválida! Digite 9 para ver as opções");
             }
@@ -67,7 +67,7 @@ public class Amarelinha {
         do {
             try {
                 System.out.print("Digite a opção desejada: ");
-                opcao = scanner.nextInt();
+                opcao = SCANNER.nextInt();
                 switch (opcao) {
                     case 1 -> {
                         cadastroTransporte.cadastraCidades();
@@ -78,10 +78,11 @@ public class Amarelinha {
                         System.out.println(cadastroTransporte.cidades);
                     }
                     case 3 -> {
-                        System.out.println("Adicionando itens...");
+                        cadastroTransporte.adicionarProdutos();
+                        imprimeMenuCadastro();
                     }
                     case 4 -> {
-                        System.out.println("Removendo itens...");
+                        System.out.println(cadastroTransporte.getCarga());
                     }
                     case 5 -> {
                         System.out.println("Cadastrar transporte...");
@@ -97,7 +98,7 @@ public class Amarelinha {
                     }
                 }
             } catch (InputMismatchException ime) {
-                scanner.nextLine();
+                SCANNER.nextLine();
                 opcao = -1;
                 System.out.println("Opção inválida! Digite 9 para ver as opções");
             }
