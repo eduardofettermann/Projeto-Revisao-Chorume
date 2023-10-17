@@ -7,6 +7,8 @@ import org.chorume.amarelinha.model.Produto;
 import java.util.*;
 
 public class Amarelinha {
+    private static DadosEstatisticos dadosEstatisticos = new DadosEstatisticos();
+
     public static final Scanner SCANNER = new Scanner(System.in);
     public static CadastroTransporte cadastroTransporte = new CadastroTransporte();
     public static List<Transporte> transportes = new ArrayList<>();
@@ -34,8 +36,7 @@ public class Amarelinha {
                         imprimeMenuPrincipal();
                     }
                     case 4 -> {
-//                        System.out.println(transportes);
-                        System.out.println("Estatísticas: em construção...");
+                        dadosEstatisticos.exibirRelatorioEstatistico(transportes);
                         imprimeMenuPrincipal();
                     }
                     case 9 -> {
