@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class MenuConsultarTrechosEModalidades {
-    GerenciadorDeCidades gerenciadorDeCidades = new GerenciadorDeCidades("DistanciasCidadesCSV.csv");
+    GerenciadorDeCidades gerenciadorDeCidades = new GerenciadorDeCidades();
     LinkedHashMap<String, Cidade> cidades = gerenciadorDeCidades.retornaLinkedHashMapDeCidades();
     Scanner scanner = new Scanner(System.in);
     private String tamanhoDoCaminhaoEscolhido;

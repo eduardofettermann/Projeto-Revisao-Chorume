@@ -16,7 +16,7 @@ public class Leitor {
         return proximaLinha;
     }
 
-    public void fechaLeitor(){
+    public void fechaLeitor() {
         try {
             leitorBufferizado.close();
         } catch (IOException e) {
@@ -24,8 +24,13 @@ public class Leitor {
         }
     }
 
-    public Leitor(String caminhoDoArquivoCSV) throws FileNotFoundException {
-        setArquivoCSV(caminhoDoArquivoCSV);
+    public Leitor() {
+        try {
+            setArquivoCSV("DistanciasCidadesCSV.csv");
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            System.err.println("Ocorreu um erro: Verifique se o caminho indicado do arquivo .csv está correto!");
+        }
         setLeitorBufferizado(getArquivoCSV());
     }
 

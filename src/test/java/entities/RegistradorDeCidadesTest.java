@@ -9,12 +9,11 @@ import java.util.LinkedHashMap;
 
 public class RegistradorDeCidadesTest {
     @Test
-    void verificaSeRetornaLinkedHashMapComAsCidadesDoArquivoPassado(){
+    void verificaSeRetornaLinkedHashMapComAsCidadesDoArquivoPassado() {
         RegistradorDeCidades registradorDeCidades = new RegistradorDeCidades();
-        String caminhoComArquivoCSV = "DistanciasCidadesCSV.csv";
 
-        LinkedHashMap<String, Cidade> cidades = registradorDeCidades.retornaMapDasCidadesDoArquivo(caminhoComArquivoCSV);
+        LinkedHashMap<String, Cidade> cidades = registradorDeCidades.retornaMapDasCidadesDoArquivo();
 
-        Assertions.assertEquals(0,cidades.get("PORTO ALEGRE").getDistancias().get("PORTO ALEGRE"));
+        Assertions.assertEquals(0, cidades.get("PORTO ALEGRE").getDistancias().get("PORTO ALEGRE"));
     }
 }
