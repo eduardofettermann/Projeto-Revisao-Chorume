@@ -28,4 +28,11 @@ public class GerenciadorDeCidades {
         String nomeDaCidadeMaiusculo = nomeDaCidade.toUpperCase();
         return linkedHashMapDeCidades.containsKey(nomeDaCidadeMaiusculo);
     }
+
+    public void exibeListaDeCidades(){
+        System.out.println("Lista de cidades disponíveis:");
+        LinkedHashMap<String,Cidade> cidades = retornaLinkedHashMapDeCidades();
+        cidades.forEach((nome, cidade) -> System.out.println(nome));
+        System.out.println("\nSão 24 cidades no total!\n");
+    }
 }
