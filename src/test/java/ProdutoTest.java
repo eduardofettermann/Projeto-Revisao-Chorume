@@ -50,5 +50,23 @@ class ProdutoTest {
         // Verifica se o hashCode é diferente para dois produtos diferentes
         assertNotEquals(produto1.hashCode(),produto3.hashCode());
     }
+    @Test
+    public void testEquals1() {
+
+        Produto produto5 = new Produto("PlayStation 5", 3.9);
+        Produto produto6 = new Produto("PlayStation 5", 3.9);
+        Produto produto7 = new Produto("Lavadora de roupa", 15);
+        Produto produto8 = new Produto("Air Fryer", 3.5);
+
+
+        // Verifica se dois produtos iguais são considerados iguais pelo método equals
+        assertTrue(produto5.equals(produto6));
+
+        // Verifica se dois produtos diferentes são considerados diferentes pelo método equals
+        assertFalse(produto6.equals(produto7));
+
+
+    }
+
 }
 
