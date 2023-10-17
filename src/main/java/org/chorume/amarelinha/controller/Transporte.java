@@ -126,11 +126,11 @@ public class Transporte {
     public String toString() {
         return "Transporte{" +
                 "cargaTotal=" + cargaTotal +
-                ", carga=" + carga +
-                ", caminhoes=" + caminhoes +
-                ", cidades=" + cidades +
-                ", custoTotal=" + custoTotal +
-                ", distanciaTotal=" + distanciaTotal +
+                "\ncarga=" + carga +
+                "\ncaminhoes=" + caminhoes +
+                "\ncidades=" + cidades +
+                "\ncustoTotal=" + custoTotal +
+                "\ndistanciaTotal=" + distanciaTotal +
                 '}';
     }
 
