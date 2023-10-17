@@ -38,6 +38,14 @@ public class Transporte {
         return cidades;
     }
 
+    public int getDistanciaTotal() {
+        return distanciaTotal;
+    }
+
+    public double getCustoTotal() {
+        return custoTotal;
+    }
+
     public int calcularDistanciaTotal(List<String> cidades) {
         GerenciadorDeCidades gerenciadorDeCidades = new GerenciadorDeCidades();
         int distancia = 0;
