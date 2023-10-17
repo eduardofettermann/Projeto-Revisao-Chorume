@@ -1,6 +1,7 @@
 package org.chorume.amarelinha.service;
 
 import org.chorume.amarelinha.controller.GerenciadorDeCidades;
+import org.chorume.amarelinha.controller.Transporte;
 import org.chorume.amarelinha.model.Cidade;
 import org.chorume.amarelinha.model.Produto;
 
@@ -11,7 +12,6 @@ import static org.chorume.amarelinha.service.Amarelinha.SCANNER;
 public class CadastroTransporte {
     public List<String> cidades = new ArrayList<>();
     private LinkedHashMap<Produto, Integer> carga = new LinkedHashMap<>();
-    private int nCidades = cidades.size();
     private final static GerenciadorDeCidades GERENCIADOR_DE_CIDADES = new GerenciadorDeCidades();
     private LinkedHashMap<String, Cidade> cidadesLinkedHashMap;
 
@@ -26,6 +26,11 @@ public class CadastroTransporte {
         put("NINTENDO SWITCH", 0.3);
     }};
 
+    public void limpaVar() {
+        cidades.clear();
+        carga.clear();
+    }
+
     public LinkedHashMap<Produto, Integer> getCarga() {
         return carga;
     }
@@ -35,8 +40,7 @@ public class CadastroTransporte {
         String cidadeInput;
         boolean listando = true;
         do {
-            SCANNER.nextLine();
-            System.out.printf("Digite a cidade %d (X para sair): ", nCidades + 1);
+            System.out.printf("Digite a cidade %d (X para sair): ", cidades.size() + 1);
             cidadeInput = SCANNER.nextLine();
             if (!cidadeInput.equalsIgnoreCase("X")) {
                 if ((!GERENCIADOR_DE_CIDADES.estaNaListaDeCidades(cidadeInput, cidadesLinkedHashMap))) {
@@ -47,9 +51,6 @@ public class CadastroTransporte {
             } else {
                 listando = false;
             }
-
-            nCidades = cidades.size();
-
         } while (listando);
     }
 
@@ -58,7 +59,6 @@ public class CadastroTransporte {
         int quantidade;
         String produtoInput;
         boolean listando = true;
-        SCANNER.nextLine();
         do {
             System.out.print("Digite o produto que deseja adicionar (X para sair): ");
             produtoInput = SCANNER.nextLine().toUpperCase();
@@ -99,7 +99,6 @@ public class CadastroTransporte {
             System.out.printf("%d- %s, %dun.\n", i, produto.getKey().getNome(), produto.getValue());
         }
         System.out.print("ENTER para voltar para o menu ");
-        SCANNER.nextLine();
         System.out.println(SCANNER.nextLine());
     }
 
@@ -109,5 +108,23 @@ public class CadastroTransporte {
         for (String nomeProduto : nomesProdutos) {
             System.out.printf("- %s\n", nomeProduto);
         }
+    }
+
+    public boolean cadastrarTransporte() {
+        if (cidades.size() < 2) {
+            System.out.println("Transporte inválido! Defina pelo menos duas cidades!");
+        } else if (carga.isEmpty()) {
+            System.out.println("Transporte inválido! Carga vazia!");
+        } else {
+            return true;
+        }
+        System.out.print("ENTER para voltar para o menu ");
+        System.out.println(SCANNER.nextLine());
+        return false;
+    }
+
+    public Transporte salvaTransporte() {
+        System.out.println("Transporte cadastrado!");
+        return new Transporte(carga, cidades);
     }
 }
