@@ -6,12 +6,29 @@ public class Leitor {
     private BufferedReader leitorBufferizado;
     private FileReader arquivoCSV;
 
+    public String[] retornaProximaLinhaFracionada() {
+        String[] dadosDaLinha;
+        String proximaLinha;
+        try {
+            proximaLinha = leitorBufferizado.readLine();
+            dadosDaLinha = proximaLinha.split(";");
+            return dadosDaLinha;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String[] retornaStringPassadaEmArray(String stringPassada) {
+        String[] dadosEmArray = stringPassada.split(";");
+        return dadosEmArray;
+    }
+
     public String retornaProximaLinha() {
-        String proximaLinha = null;
+        String proximaLinha;
         try {
             proximaLinha = leitorBufferizado.readLine();
         } catch (IOException e) {
-            return proximaLinha;
+            throw new RuntimeException(e);
         }
         return proximaLinha;
     }
@@ -29,6 +46,8 @@ public class Leitor {
             setArquivoCSV("DistanciasCidadesCSV.csv");
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
+            System.err.println("Ocorreu um erro: Verifique se o caminho indicado do arquivo .csv está correto!");
+        } catch (NullPointerException e) {
             System.err.println("Ocorreu um erro: Verifique se o caminho indicado do arquivo .csv está correto!");
         }
         setLeitorBufferizado(getArquivoCSV());
