@@ -2,6 +2,7 @@ package org.chorume.amarelinha.controller;
 
 import org.chorume.amarelinha.model.Produto;
 
+import javax.swing.plaf.synth.SynthRadioButtonMenuItemUI;
 import java.util.*;
 
 import static org.chorume.amarelinha.service.Amarelinha.SCANNER;
@@ -100,7 +101,9 @@ public class CadastroTransporte {
             i++;
             System.out.printf("%d- %s, %dun.\n", i, produto.getKey().getNome(), produto.getValue());
         }
+        System.out.print("ENTER para voltar para o menu ");
         SCANNER.nextLine();
+        System.out.println(SCANNER.nextLine());
     }
 
     public void imprimeProdutosValidos() {
@@ -109,6 +112,5 @@ public class CadastroTransporte {
         for (String nomeProduto : nomesProdutos) {
             System.out.printf("- %s\n", nomeProduto);
         }
-        System.out.print("Enter para mostrar menu");
     }
 }
