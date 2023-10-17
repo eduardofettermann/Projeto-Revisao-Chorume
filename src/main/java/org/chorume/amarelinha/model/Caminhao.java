@@ -24,6 +24,10 @@ public class Caminhao {
         return carga;
     }
 
+    public String getClassificacao() {
+        return classificacao;
+    }
+
     // Método toString para representação em string
     @Override
     public String toString() {
