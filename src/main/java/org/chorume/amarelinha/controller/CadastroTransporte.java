@@ -2,10 +2,7 @@ package org.chorume.amarelinha.controller;
 
 import org.chorume.amarelinha.model.Produto;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 import static org.chorume.amarelinha.service.Amarelinha.SCANNER;
 
@@ -63,42 +60,55 @@ public class CadastroTransporte {
         int quantidade;
         String produtoInput;
         boolean listando = true;
+        SCANNER.nextLine();
         do {
-            SCANNER.nextLine();
             System.out.print("Digite o produto que deseja adicionar (X para sair): ");
             produtoInput = SCANNER.nextLine().toUpperCase();
-            if (!produtoInput.equalsIgnoreCase("X")) {
-                if (verificaProduto(produtoInput)) {
-                    produto = new Produto(produtoInput, PRODUTOS_PERMITIDOS.get(produtoInput));
-
-                    if (!carga.isEmpty() && carga.keySet().stream().toList().contains(produto)) {
-                        System.out.println("Produto já adicionado, o valor inserido substituirá o anterior!");
-                        System.out.printf("Atual -> %s: %d un.\n", produto.getNome(), carga.get(produto));
-                        System.out.print("Qual quantidade deseja? ");
-                        carga.put(produto, carga.get(produto) + 1);
-                    } else {
-                        System.out.print("Quantos deseja adicionar? ");
+            switch (produtoInput) {
+                case "X" -> listando = false;
+                case "P" -> imprimeProdutosValidos();
+                default -> {
+                    if (verificaProduto(produtoInput)) {
+                        produto = new Produto(produtoInput, PRODUTOS_PERMITIDOS.get(produtoInput));
+                        if (!carga.isEmpty() && carga.keySet().stream().toList().contains(produto)) {
+                            System.out.println("Produto já adicionado, o valor inserido substituirá o anterior!");
+                            System.out.printf("Atual -> %s: %d un.\n", produto.getNome(), carga.get(produto));
+                            System.out.print("Qual quantidade deseja? ");
+                        } else {
+                            System.out.print("Quantos deseja adicionar? ");
+                        }
                         quantidade = SCANNER.nextInt();
                         carga.put(produto, quantidade);
+                        SCANNER.nextLine();
+                    } else {
+                        System.out.println("Produto inválido! Digite 'P' para ver os produtos permitidos");
                     }
-                } else {
-                    System.out.println("Produto inválido! Digite 'P' para ver os produtos permitidos");
                 }
-            } else {
-                listando = false;
             }
         } while (listando);
     }
 
     public boolean verificaProduto(String produto) {
         List<String> nomesProdutos = PRODUTOS_PERMITIDOS.keySet().stream().toList();
-        if (produto.equals("P")) {
-            System.out.println("Lista de produtos válidos:");
-            for (String nomeProduto : nomesProdutos) {
-                System.out.printf("- %s\n", nomeProduto);
-            }
-            return true;
-        }
         return nomesProdutos.contains(produto);
+    }
+
+    public void imprimeProdutosAdicionados() {
+        System.out.println("Produtos adicionados:");
+        int i = 0;
+        for (Map.Entry<Produto, Integer> produto : carga.entrySet()) {
+            i++;
+            System.out.printf("%d- %s, %dun.\n", i, produto.getKey().getNome(), produto.getValue());
+        }
+        SCANNER.nextLine();
+    }
+
+    public void imprimeProdutosValidos() {
+        List<String> nomesProdutos = PRODUTOS_PERMITIDOS.keySet().stream().toList();
+        System.out.println("Lista de produtos válidos:");
+        for (String nomeProduto : nomesProdutos) {
+            System.out.printf("- %s\n", nomeProduto);
+        }
+        System.out.print("Enter para mostrar menu");
     }
 }
