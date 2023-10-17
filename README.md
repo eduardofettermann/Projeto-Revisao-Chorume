@@ -24,7 +24,7 @@ Antes de executar o projeto, certifique-se de ter os seguintes requisitos instal
   - Criou o projeto inicial, incluindo a leitura do arquivo CSV para consultar as distâncias entre cidades.
   - Contribuiu na implementação do menu para consulta de distâncias.
 
-- **Giovanne Boaro:**
+- **Giovane Boaro:**
   - Elaborou o menu de cadastro de transporte no projeto.
   - Contribuiu no método para buscar a distância entre duas cidades.
   - Participou da implementação de testes unitários das classes Produto e Transporte.
