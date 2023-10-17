@@ -12,7 +12,7 @@ public class Transporte {
     private LinkedHashMap<Caminhao, Double> caminhoes = new LinkedHashMap<>(); // <Caminhao, CustoViagem>
     private List<String> cidades;
     private double custoTotal;
-    private int distanciaTotal;
+    private int distanciaTotal = 0;
 
     //Construtor
     public Transporte(LinkedHashMap<Produto, Integer> carga, List<String> cidades) {
@@ -20,7 +20,7 @@ public class Transporte {
         this.cargaTotal = new LinkedHashMap<>(carga);
         this.carga = new LinkedHashMap<>(carga);
         this.cidades = new ArrayList<>(cidades);
-        // this.distanciaTotal = calcularDistanciaTotal(cidades)
+        this.distanciaTotal = calcularDistanciaTotal(cidades);
         this.divideCarga();
         this.custoTotal = calcularCustoTotal(this.distanciaTotal);
     }
@@ -34,10 +34,16 @@ public class Transporte {
         return caminhoes;
     }
 
-//    public double calcularDistanciaTotal(List<String> cidades) {
-//        // Lógica para calcular a distância total
+    public int calcularDistanciaTotal(List<String> cidades) {
+        GerenciadorDeCidades gerenciadorDeCidades = new GerenciadorDeCidades();
+        int distancia = 0;
+        // Lógica para calcular a distância total
         // Calcula a distancia da cidade0 para cidade1, da cidade1 para cidade2
-//    }
+        for (int i = 0; i < cidades.size() - 1; i++) {
+            distancia += gerenciadorDeCidades.retornaDistanciaDaRota(cidades.get(i), cidades.get(i+1));
+        }
+        return distancia;
+    }
 
     // Faz a divisão ideal da carga entre caminhões
     public void divideCarga() {
@@ -116,12 +122,15 @@ public class Transporte {
         return custo;
     }
 
-    //método toString da classe
     @Override
     public String toString() {
         return "Transporte{" +
-                "produtos=" + cargaTotal +
+                "cargaTotal=" + cargaTotal +
+                ", carga=" + carga +
                 ", caminhoes=" + caminhoes +
+                ", cidades=" + cidades +
+                ", custoTotal=" + custoTotal +
+                ", distanciaTotal=" + distanciaTotal +
                 '}';
     }
 
