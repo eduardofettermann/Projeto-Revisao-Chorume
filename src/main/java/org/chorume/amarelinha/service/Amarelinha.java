@@ -1,11 +1,10 @@
 package org.chorume.amarelinha.service;
 
 import org.chorume.amarelinha.controller.Transporte;
+import org.chorume.amarelinha.model.Caminhao;
+import org.chorume.amarelinha.model.Produto;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Amarelinha {
     public static final Scanner SCANNER = new Scanner(System.in);
@@ -31,8 +30,12 @@ public class Amarelinha {
                         imprimeMenuPrincipal();
                     }
                     case 3 -> {
-                        System.out.println("Estatisticas...");
-                        System.out.println(transportes);
+                        imprimeTransportes();
+                        imprimeMenuPrincipal();
+                    }
+                    case 4 -> {
+//                        System.out.println(transportes);
+                        System.out.println("Estatísticas: em construção...");
                         imprimeMenuPrincipal();
                     }
                     case 9 -> {
@@ -59,7 +62,8 @@ public class Amarelinha {
                 ||                                      ||
                 ||  1- Consultar trechos e modalidades  ||
                 ||  2- Cadastrar transporte             ||
-                ||  3- Estatísticas                     ||
+                ||  3- Ver transportes cadastrados      ||
+                ||  4- Estatísticas                     ||
                 ||  0- Fechar programa                  ||
                 ||                                      ||
                 ==========================================
@@ -81,8 +85,8 @@ public class Amarelinha {
                         imprimeMenuCadastro();
                     }
                     case 2 -> {
-                        System.out.println("Vendo cidades...");
-                        System.out.println(cadastroTransporte.cidades);
+                        cadastroTransporte.imprimeCidades();
+                        imprimeMenuCadastro();
                     }
                     case 3 -> {
                         cadastroTransporte.adicionarProdutos();
@@ -93,11 +97,14 @@ public class Amarelinha {
                         imprimeMenuCadastro();
                     }
                     case 5 -> {
-                        if(cadastroTransporte.cadastrarTransporte()) {
+                        if (cadastroTransporte.cadastrarTransporte()) {
                             transportes.add(cadastroTransporte.salvaTransporte());
                             cadastroTransporte.limpaVar();
                         }
-                        imprimeMenuCadastro();
+                        System.out.print("ENTER para voltar para o menu ");
+                        System.out.println(SCANNER.nextLine());
+                        System.out.println("Voltando para o menu principal...");
+                        opcao = 0;
                     }
                     case 9 -> {
                         imprimeMenuCadastro();
@@ -131,5 +138,41 @@ public class Amarelinha {
                 ==========================================
                 """
         );
+    }
+
+    public static void imprimeTransportes() {
+        System.out.println("Transportes cadastrados:");
+        for (int i = 0; i < transportes.size(); i++) {
+            System.out.printf("%d- ", i + 1);
+            for (int j = 0; j < transportes.get(i).getCidades().size() - 1; j++) {
+                System.out.printf("%s -> ", transportes.get(i).getCidades().get(j).toUpperCase());
+            }
+            System.out.print(transportes.get(i).getCidades().get(transportes.get(i).getCidades().size() - 1).toUpperCase() + "\n");
+            System.out.printf("\tDistância total: %dkm\n", transportes.get(i).getDistanciaTotal());
+            System.out.printf("\tCusto total: R$ %.2f\n", transportes.get(i).getCustoTotal());
+            System.out.println("\tCarga:");
+            for (Map.Entry<Produto, Integer> produto : transportes.get(i).getCarga().entrySet()) {
+                System.out.printf("\t\t- %s, %dun.\n", produto.getKey().getNome(), produto.getValue());
+            }
+            HashMap<String, Integer> nCaminhoes = new HashMap<>() {{
+                put("Pequeno",0);
+                put("Médio",0);
+                put("Grande",0);
+            }};
+            for (Map.Entry<Caminhao, Double> caminhao : transportes.get(i).getCaminhoes().entrySet()) {
+                switch (caminhao.getKey().getClassificacao()) {
+                    case "Pequeno" -> nCaminhoes.put("Pequeno", nCaminhoes.get("Pequeno") + 1);
+                    case "Médio" -> nCaminhoes.put("Médio", nCaminhoes.get("Médio") + 1);
+                    case "Grande" -> nCaminhoes.put("Grande", nCaminhoes.get("Grande") + 1);
+                }
+            }
+            System.out.println("\tCaminhões:");
+            System.out.printf("\t\tGrandes: %d\n", nCaminhoes.get("Grande"));
+            System.out.printf("\t\tMédios: %d\n", nCaminhoes.get("Médio"));
+            System.out.printf("\t\tPequenos: %d\n", nCaminhoes.get("Pequeno"));
+            System.out.println();
+        }
+        System.out.print("ENTER para voltar para o menu ");
+        System.out.println(SCANNER.nextLine());
     }
 }
