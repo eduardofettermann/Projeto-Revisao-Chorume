@@ -1,4 +1,5 @@
 package org.chorume.amarelinha.service;
+
 import org.chorume.amarelinha.controller.Transporte;
 import org.chorume.amarelinha.model.Produto;
 
@@ -79,7 +80,9 @@ public class DadosEstatisticos {
         HashMap<String, Double> custoPorTipoProduto = calcularCustoPorTipoProduto();
         System.out.println("Custo médio por tipo de produto:");
         for (String tipoProduto : custoPorTipoProduto.keySet()) {
-            System.out.printf("- %s: R$ %.2f%n", tipoProduto, custoPorTipoProduto.get(tipoProduto));
+            if (!custoPorTipoProduto.get(tipoProduto).isNaN()) {
+                System.out.printf("- %s: R$ %.2f%n", tipoProduto, custoPorTipoProduto.get(tipoProduto));
+            }
         }
 
         // Adicionaremos aqui os cálculos para outras estatísticas...
