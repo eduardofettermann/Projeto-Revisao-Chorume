@@ -82,7 +82,8 @@ public class Amarelinha {
                         imprimeMenuCadastro();
                     }
                     case 4 -> {
-                        System.out.println(cadastroTransporte.getCarga());
+                        cadastroTransporte.imprimeProdutosAdicionados();
+                        imprimeMenuCadastro();
                     }
                     case 5 -> {
                         System.out.println("Cadastrar transporte...");
