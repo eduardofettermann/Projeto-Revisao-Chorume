@@ -1,8 +1,5 @@
 package org.chorume.amarelinha.service;
 
-import org.chorume.amarelinha.controller.CadastroTransporte;
-import org.chorume.amarelinha.controller.MenuConsultarTrechosEModalidades;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
