@@ -34,6 +34,10 @@ public class Transporte {
         return caminhoes;
     }
 
+    public List<String> getCidades() {
+        return cidades;
+    }
+
     public int calcularDistanciaTotal(List<String> cidades) {
         GerenciadorDeCidades gerenciadorDeCidades = new GerenciadorDeCidades();
         int distancia = 0;
