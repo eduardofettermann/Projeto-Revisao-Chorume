@@ -7,14 +7,21 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static org.chorume.amarelinha.service.Amarelinha.SCANNER;
+
 public class DadosEstatisticos {
 
-    private static final HashMap<String, Object> PRODUTOS_PERMITIDOS = new HashMap<>() ;
+    private final HashMap<String, Double> PRODUTOS_PERMITIDOS = new HashMap<>() {{
+        put("CELULAR", 0.7);
+        put("GELADEIRA", 50.0);
+        put("AIR FRYER", 3.5);
+        put("CADEIRA", 5.0);
+        put("LUMINARIA", 0.8);
+        put("LAVADORA DE ROUPA", 15.0);
+        put("PLAYSTATION 5", 3.9);
+        put("NINTENDO SWITCH", 0.3);
+    }};
     private List<Transporte> transportes;
-
-    public DadosEstatisticos() {
-        this.transportes = new ArrayList<>();
-    }
 
     public void adicionarTransporte(Transporte transporte) {
         transportes.add(transporte);
@@ -23,7 +30,7 @@ public class DadosEstatisticos {
     public double calcularCustoTotal() {
         double custoTotal = 0;
         for (Transporte transporte : transportes) {
-            // acessar os dados do transporte e calcular o custo total
+            custoTotal += transporte.getCustoTotal();
         }
         return custoTotal;
     }
@@ -63,7 +70,8 @@ public class DadosEstatisticos {
 
     // Métodos para calcular outras estatísticas
 
-    public void exibirRelatorioEstatistico() {
+    public void exibirRelatorioEstatistico(List<Transporte> transportes) {
+        this.transportes = new ArrayList<>(transportes);
         System.out.println("===== Dados Estatísticos dos Transportes =====");
         System.out.printf("Custo total: R$ %.2f%n", calcularCustoTotal());
         System.out.printf("Custo médio por km: R$ %.2f%n", calcularCustoMedioPorKm());
@@ -77,5 +85,7 @@ public class DadosEstatisticos {
         // Adicionaremos aqui os cálculos para outras estatísticas...
 
         System.out.println("===============================================");
+        System.out.print("ENTER para voltar para o menu ");
+        System.out.println(SCANNER.nextLine());
     }
 }

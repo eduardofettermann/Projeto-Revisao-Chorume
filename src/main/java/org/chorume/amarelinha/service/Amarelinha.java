@@ -36,7 +36,7 @@ public class Amarelinha {
                         imprimeMenuPrincipal();
                     }
                     case 4 -> {
-                        dadosEstatisticos.exibirRelatorioEstatistico();
+                        dadosEstatisticos.exibirRelatorioEstatistico(transportes);
                         imprimeMenuPrincipal();
                     }
                     case 9 -> {
