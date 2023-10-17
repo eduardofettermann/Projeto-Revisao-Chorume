@@ -54,6 +54,17 @@ public class CadastroTransporte {
         } while (listando);
     }
 
+    public void imprimeCidades() {
+        System.out.println("Cidades definidas:");
+        int i = 0;
+        for (String cidade : cidades) {
+            i++;
+            System.out.printf("%d- %s\n", i, cidade);
+        }
+        System.out.print("ENTER para voltar para o menu ");
+        System.out.println(SCANNER.nextLine());
+    }
+
     public void adicionarProdutos() {
         Produto produto;
         int quantidade;
