@@ -1,5 +1,6 @@
-package org.chorume.amarelinha.controller;
+package org.chorume.amarelinha.service;
 
+import org.chorume.amarelinha.controller.GerenciadorDeCidades;
 import org.chorume.amarelinha.model.Cidade;
 
 import java.util.LinkedHashMap;
