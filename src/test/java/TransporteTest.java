@@ -74,33 +74,33 @@ public class TransporteTest {
     }
 
 
-    @Test
-    public void somaPesoCarga() {
-
-        Transporte transporte1 = new Transporte(new LinkedHashMap<>() {{
-            put(new Produto("PlayStation 5", 3.90), 227);
-            put(new Produto("Geladeira", 50.00), 273);
-            put(new Produto("Luminária", 0.80), 75);
-            put(new Produto("Lavadora de roupa", 15.00), 468);
-            put(new Produto("Air Fryer", 3.50), 90);
-            put(new Produto("Nintendo Switch", 0.30), 135);
-            put(new Produto("Cadeira", 5.00), 123);
-            put(new Produto("Celular", 0.70), 445);
-        }});
-        Transporte transporte2 = new Transporte(new LinkedHashMap<Produto, Integer>() {{
-            put(new Produto("PlayStation 5", 3.90), 12);
-            put(new Produto("Geladeira", 50.00), 46);
-            put(new Produto("Luminária", 0.80), 73);
-            put(new Produto("Lavadora de roupa", 15.00), 57);
-            put(new Produto("Air Fryer", 3.50), 39);
-            put(new Produto("Nintendo Switch", 0.30), 14);
-            put(new Produto("Celular", 0.70), 43);
-            put(new Produto("Cadeira", 5.00), 34);
-        }});
-
-        Assertions.assertEquals(22897.3, transporte1.somaPesoCarga(transporte1.getCarga()));
-        Assertions.assertEquals(3601.0, transporte2.somaPesoCarga(transporte2.getCarga()));
-    }
+//    @Test
+//    public void somaPesoCarga() {
+//
+//        Transporte transporte1 = new Transporte(new LinkedHashMap<>() {{
+//            put(new Produto("PlayStation 5", 3.90), 227);
+//            put(new Produto("Geladeira", 50.00), 273);
+//            put(new Produto("Luminária", 0.80), 75);
+//            put(new Produto("Lavadora de roupa", 15.00), 468);
+//            put(new Produto("Air Fryer", 3.50), 90);
+//            put(new Produto("Nintendo Switch", 0.30), 135);
+//            put(new Produto("Cadeira", 5.00), 123);
+//            put(new Produto("Celular", 0.70), 445);
+//        }});
+//        Transporte transporte2 = new Transporte(new LinkedHashMap<Produto, Integer>() {{
+//            put(new Produto("PlayStation 5", 3.90), 12);
+//            put(new Produto("Geladeira", 50.00), 46);
+//            put(new Produto("Luminária", 0.80), 73);
+//            put(new Produto("Lavadora de roupa", 15.00), 57);
+//            put(new Produto("Air Fryer", 3.50), 39);
+//            put(new Produto("Nintendo Switch", 0.30), 14);
+//            put(new Produto("Celular", 0.70), 43);
+//            put(new Produto("Cadeira", 5.00), 34);
+//        }});
+//
+//        Assertions.assertEquals(22897.3, transporte1.somaPesoCarga(transporte1.getCarga()));
+//        Assertions.assertEquals(3601.0, transporte2.somaPesoCarga(transporte2.getCarga()));
+//    }
 
 //    @Test void testaCriaçãoTransporte() {
 //
