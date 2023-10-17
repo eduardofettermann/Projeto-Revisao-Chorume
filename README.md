@@ -27,9 +27,12 @@ Antes de executar o projeto, certifique-se de ter os seguintes requisitos instal
 - **Giovanne Boaro:**
   - Elaborou o menu de cadastro de transporte no projeto.
   - Contribuiu no método para buscar a distância entre duas cidades.
+  - Participou da implementação de testes unitários das classes Produto e Transporte.
 
 - **Dai Shinomura:**
   - Trabalhou na implementação do método de menu do projeto no arquivo "amarelinha".
+  - Participou da implementação de testes unitários da classe Produto.
+
 
 ### Funcionalidades
 
@@ -54,6 +57,6 @@ Permite ao usuário encerrar o programa a qualquer momento.
 - [David Silva](https://github.com/Davstx) 🧑‍💻
 - [Eduardo Bonatto](https://github.com/ebonatto) 🧑‍💻
 - [Eduardo Fetterman](https://github.com/eduardofettermann) 🧑‍💻
-- [Giovanne Boaro](https://github.com/GiovaneBoaro) 🧑‍💻
+- [Giovane Boaro](https://github.com/GiovaneBoaro) 🧑‍💻
 - [Dai Shinomura](https://github.com/Daishimomura1) 🧑‍💻
 
