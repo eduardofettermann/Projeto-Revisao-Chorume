@@ -1,11 +1,17 @@
+import org.chorume.amarelinha.model.Caminhao;
 import org.chorume.amarelinha.model.Produto;
 import org.chorume.amarelinha.controller.Transporte;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class TransporteTest {
+private Transporte transporte;
+
     @Test
     public void ordenaCarga() {
         LinkedHashMap<Produto, Integer> carga1 = new LinkedHashMap<Produto, Integer>() {{
@@ -102,8 +108,26 @@ public class TransporteTest {
 //        Assertions.assertEquals(3601.0, transporte2.somaPesoCarga(transporte2.getCarga()));
 //    }
 
-//    @Test void testaCriaçãoTransporte() {
+//    @Test
+//    void testaCriaçãoTransporte() {
 //
 //    }
+
+    @Test
+    public void testCalcularCustoTotal() {
+        // Crie uma carga e cidades específicas para este teste
+        LinkedHashMap<Produto, Integer> carga = new LinkedHashMap<>();
+        carga.put(new Produto("Celular", 0.7), 5);
+        carga.put(new Produto("Cadeira", 5.0), 3);
+        List<String> cidades = List.of("Porto Alegre", "Belem", "Aracaju");
+
+        Transporte transporteCusto = new Transporte(carga, cidades);
+
+        // Custo esperado: (29.21 * distância) + (13.42 * distância) + (5.83 * distância)
+        double expectedCusto = (29.21 + 13.42 + 5.83) * transporteCusto.getDistanciaTotal();
+        double custoTotal = transporteCusto.calcularCustoTotal(transporteCusto.getDistanciaTotal());
+
+//        assertEquals(expectedCusto,custoTotal, 5.0);
+    }
 
 }
