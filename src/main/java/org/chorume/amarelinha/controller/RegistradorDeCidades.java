@@ -9,10 +9,9 @@ public class RegistradorDeCidades {
     /**
      * Retorna a um map chave: nome da cidade, chave: Objeto da cidade com outro map com as distâncias das outras cidades
      */
-    public LinkedHashMap<String, Cidade> retornaMapDasCidadesDoArquivo(String caminhoDoArquivoCsv) {
+    public LinkedHashMap<String, Cidade> retornaMapDasCidadesDoArquivo() {
         LinkedHashMap<String, Cidade> cidadesMap = new LinkedHashMap<>();
-        try {
-            Leitor leitor = new Leitor(caminhoDoArquivoCsv);
+            Leitor leitor = new Leitor();
             String linhaDoCabecalho = leitor.retornaProximaLinha();
             String[] nomeDasCidades = linhaDoCabecalho.split(";");
 
@@ -34,10 +33,6 @@ public class RegistradorDeCidades {
                 iDaLinha++;
             }
             leitor.fechaLeitor();
-        } catch (FileNotFoundException e) {
-            System.err.println("Arquivo CSV não encontrado no caminho!");
-        }
-
         return cidadesMap;
     }
 }

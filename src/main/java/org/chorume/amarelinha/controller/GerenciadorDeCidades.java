@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 public class GerenciadorDeCidades {
     private RegistradorDeCidades registradorDeCidades = new RegistradorDeCidades();
     private PesquisadorDeDistancias pesquisadorDeDistancias = new PesquisadorDeDistancias();
-    private String caminhoDoArquivoCSV;
 
     /**
      * Retorna a distância entre a cidade origem e a cidade destino
@@ -15,13 +14,18 @@ public class GerenciadorDeCidades {
     public int retornaDistanciaDaRota(String cidadeOrigem, String cidadeDestino) {
         LinkedHashMap<String, Cidade> cidades = null;
 
-        cidades = registradorDeCidades.retornaMapDasCidadesDoArquivo(caminhoDoArquivoCSV);
+        cidades = registradorDeCidades.retornaMapDasCidadesDoArquivo();
 
         int distancia = pesquisadorDeDistancias.retornaDistanciaDaRota(cidadeOrigem, cidadeDestino, cidades);
         return distancia;
     }
 
-    public GerenciadorDeCidades(String caminhoDoArquivoCSV) {
-        this.caminhoDoArquivoCSV = caminhoDoArquivoCSV;
+    public LinkedHashMap<String,Cidade> retornaLinkedHashMapDeCidades(){
+        return registradorDeCidades.retornaMapDasCidadesDoArquivo();
+    }
+
+    public boolean estaNaListaDeCidades(String nomeDaCidade,LinkedHashMap<String,Cidade> linkedHashMapDeCidades){
+        String nomeDaCidadeMaiusculo = nomeDaCidade.toUpperCase();
+        return linkedHashMapDeCidades.containsKey(nomeDaCidadeMaiusculo);
     }
 }
