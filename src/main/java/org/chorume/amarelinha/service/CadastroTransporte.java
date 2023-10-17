@@ -1,16 +1,19 @@
-package org.chorume.amarelinha.controller;
+package org.chorume.amarelinha.service;
 
+import org.chorume.amarelinha.controller.GerenciadorDeCidades;
+import org.chorume.amarelinha.model.Cidade;
 import org.chorume.amarelinha.model.Produto;
 
-import javax.swing.plaf.synth.SynthRadioButtonMenuItemUI;
 import java.util.*;
 
 import static org.chorume.amarelinha.service.Amarelinha.SCANNER;
 
 public class CadastroTransporte {
-    public List<String> cidades = new ArrayList<>(); // Modificar para List<Cidade>
+    public List<String> cidades = new ArrayList<>();
     private LinkedHashMap<Produto, Integer> carga = new LinkedHashMap<>();
     private int nCidades = cidades.size();
+    private final static GerenciadorDeCidades GERENCIADOR_DE_CIDADES = new GerenciadorDeCidades();
+    private LinkedHashMap<String, Cidade> cidadesLinkedHashMap;
 
     private final HashMap<String, Double> PRODUTOS_PERMITIDOS = new HashMap<>() {{
         put("CELULAR", 0.7);
@@ -28,33 +31,27 @@ public class CadastroTransporte {
     }
 
     public void cadastraCidades() {
+        cidadesLinkedHashMap = GERENCIADOR_DE_CIDADES.retornaLinkedHashMapDeCidades();
         String cidadeInput;
-        // Cidade cidade;
         boolean listando = true;
         do {
-            try {
-                SCANNER.nextLine();
-                System.out.printf("Digite a cidade %d (X para sair): ", nCidades + 1);
-                cidadeInput = SCANNER.nextLine();
-                if (!cidadeInput.equalsIgnoreCase("X")) {
-                    // cidade = verificaCidade(cidadeInput); Substituir por método que verifica cidade
-                    cidades.add(cidadeInput); // Substituir cidadeInput por cidade
+            SCANNER.nextLine();
+            System.out.printf("Digite a cidade %d (X para sair): ", nCidades + 1);
+            cidadeInput = SCANNER.nextLine();
+            if (!cidadeInput.equalsIgnoreCase("X")) {
+                if ((!GERENCIADOR_DE_CIDADES.estaNaListaDeCidades(cidadeInput, cidadesLinkedHashMap))) {
+                    System.out.println("Cidade não encontrada!");
                 } else {
-                    listando = false;
+                    cidades.add(cidadeInput);
                 }
-            } catch (Exception e) { // Trocar por Exception de cidade inexistente
-                System.out.println("Cidade inválida!");
-            } finally {
-                nCidades = cidades.size();
+            } else {
+                listando = false;
             }
+
+            nCidades = cidades.size();
+
         } while (listando);
     }
-
-    public void imprimeCidades() {
-    } // Implementar método que lista as cidades já cadastradas
-
-    public void removeCidades() {
-    } // Implementar método para remover cidade adicionada
 
     public void adicionarProdutos() {
         Produto produto;
