@@ -3,15 +3,17 @@ package org.chorume.amarelinha.controller;
 import org.chorume.amarelinha.model.Cidade;
 
 import java.util.LinkedHashMap;
-import java.util.Scanner;
+
+
+import static org.chorume.amarelinha.service.Amarelinha.SCANNER;
+import static org.chorume.amarelinha.service.Amarelinha.menuPrincipal;
 
 public class MenuConsultarTrechosEModalidades {
     GerenciadorDeCidades gerenciadorDeCidades = new GerenciadorDeCidades();
     LinkedHashMap<String, Cidade> cidades = gerenciadorDeCidades.retornaLinkedHashMapDeCidades();
-    Scanner scanner = new Scanner(System.in);
     private String tamanhoDoCaminhaoEscolhido;
 
-    public void exibeMenuConsultarTrechosEModalidades() {
+    public void exibeMenuSimulacaoTrajeto() {
         String cidadeDeOrigem = perguntaERetornaCidadeOrigem();
         String cidadeDeDestino = perguntaERetornaCidadeDestino();
         int distanciaEntreCidades = gerenciadorDeCidades.retornaDistanciaDaRota(cidadeDeOrigem, cidadeDeDestino);
@@ -23,20 +25,42 @@ public class MenuConsultarTrechosEModalidades {
                 """, cidadeDeOrigem, cidadeDeDestino, distanciaEntreCidades, getTamanhoDoCaminhaoEscolhido(), custoTotal);
     }
 
+    public void exibeMenuInicial() {
+        System.out.println("""
+                Digite a opção que deseja realizar:
+                (1) - Consultar trechos
+                (2) - Simular trecho
+                                
+                (0) - Sair
+                                
+                """);
+        int opcao = SCANNER.nextInt();
+        SCANNER.nextLine();
+        switch (opcao) {
+            case (1) -> {
+                gerenciadorDeCidades.exibeListaDeCidades();
+                exibeMenuInicial();
+            }
+            case (2) -> exibeMenuSimulacaoTrajeto();
+            case (0) -> menuPrincipal();
+        }
+    }
+
     public String perguntaERetornaCidadeOrigem() {
         System.out.println("Digite o nome da cidade de origem:");
-        String cidadeDeOrigem = scanner.nextLine();
+        String cidadeDeOrigem = SCANNER.nextLine();
         boolean cidadeEncontrada = gerenciadorDeCidades.estaNaListaDeCidades(cidadeDeOrigem, cidades);
 
         if (!cidadeEncontrada) {
             System.out.println("Cidade não encontrada! Verifique se digitou corretamente");
+            perguntaERetornaCidadeOrigem();
         }
         return cidadeDeOrigem;
     }
 
     public String perguntaERetornaCidadeDestino() {
         System.out.println("Digite o nome da cidade de destino:");
-        String cidadeDeDestino = scanner.nextLine();
+        String cidadeDeDestino = SCANNER.nextLine();
         boolean cidadeEncontrada = gerenciadorDeCidades.estaNaListaDeCidades(cidadeDeDestino, cidades);
 
         if (!cidadeEncontrada) {
@@ -53,7 +77,8 @@ public class MenuConsultarTrechosEModalidades {
                 (2) - M (Médio)
                 (3) - G (Grande)
                 """);
-        int digitado = scanner.nextInt();
+        int digitado = SCANNER.nextInt();
+        SCANNER.nextLine();
         switch (digitado) {
             case (1) -> {
                 setTamanhoDoCaminhaoEscolhido("Pequeno");

@@ -1,6 +1,7 @@
 package org.chorume.amarelinha.service;
 
 import org.chorume.amarelinha.controller.CadastroTransporte;
+import org.chorume.amarelinha.controller.MenuConsultarTrechosEModalidades;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,15 +11,17 @@ public class Amarelinha {
     public static CadastroTransporte cadastroTransporte = new CadastroTransporte();
 
     public static void menuPrincipal() {
+        MenuConsultarTrechosEModalidades menuConsultarTrechosEModalidades = new MenuConsultarTrechosEModalidades();
         int opcao = -1;
         imprimeMenuPrincipal();
         do {
             try {
                 System.out.print("Digite a opção desejada: ");
                 opcao = SCANNER.nextInt();
+                SCANNER.nextLine();
                 switch (opcao) {
                     case 1 -> {
-                        System.out.println("Consultando trechos...");
+                        menuConsultarTrechosEModalidades.exibeMenuInicial();
                         imprimeMenuPrincipal();
                     }
                     case 2 -> {
