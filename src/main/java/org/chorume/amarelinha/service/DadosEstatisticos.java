@@ -1,4 +1,5 @@
 package org.chorume.amarelinha.service;
+
 import org.chorume.amarelinha.controller.Transporte;
 import org.chorume.amarelinha.model.Produto;
 
@@ -37,6 +38,9 @@ public class DadosEstatisticos {
 
     public double calcularCustoMedioPorKm() {
         double distanciaTotal = 0;
+        if (transportes.isEmpty()) {
+            return 0.0;
+        }
         for (Transporte transporte : transportes) {
             distanciaTotal += transporte.getDistanciaTotal();
         }
@@ -77,14 +81,18 @@ public class DadosEstatisticos {
         System.out.printf("Custo médio por km: R$ %.2f%n", calcularCustoMedioPorKm());
 
         HashMap<String, Double> custoPorTipoProduto = calcularCustoPorTipoProduto();
-        System.out.println("Custo médio por tipo de produto:");
+        if(!transportes.isEmpty()) {
+            System.out.println("Custo médio por tipo de produto:");
+        }
         for (String tipoProduto : custoPorTipoProduto.keySet()) {
-            System.out.printf("- %s: R$ %.2f%n", tipoProduto, custoPorTipoProduto.get(tipoProduto));
+            if (!custoPorTipoProduto.get(tipoProduto).isNaN()) {
+                System.out.printf("- %s: R$ %.2f%n", tipoProduto, custoPorTipoProduto.get(tipoProduto));
+            }
         }
 
         // Adicionaremos aqui os cálculos para outras estatísticas...
 
-        System.out.println("===============================================");
+        System.out.println("==============================================");
         System.out.print("ENTER para voltar para o menu ");
         System.out.println(SCANNER.nextLine());
     }
